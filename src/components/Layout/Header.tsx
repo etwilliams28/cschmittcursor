@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Mail, Clock } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { BusinessSettings } from '../../types/database';
+import { scrollToContact } from '../../utils/scrollUtils';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -83,12 +84,12 @@ const Header: React.FC = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Link
-              to="#contact"
+            <button
+              onClick={scrollToContact}
               className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
             >
               Get Free Quote
-            </Link>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -116,13 +117,15 @@ const Header: React.FC = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link
-                to="#contact"
+              <button
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  scrollToContact(e);
+                }}
                 className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-medium text-center mt-4 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
               >
                 Get Free Quote
-              </Link>
+              </button>
             </div>
           </div>
         )}

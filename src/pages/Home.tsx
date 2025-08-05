@@ -5,6 +5,7 @@ import { supabase, getImageUrl } from '../lib/supabase';
 import { HomeContent, VideoCarousel, Review, PastProject } from '../types/database';
 import Modal from '../components/UI/Modal';
 import ContactForm from '../components/Forms/ContactForm';
+import { scrollToContact } from '../utils/scrollUtils';
 
 const HomePage: React.FC = () => {
   const [heroContent, setHeroContent] = useState<HomeContent | null>(null);
@@ -142,13 +143,13 @@ const HomePage: React.FC = () => {
                 {heroContent?.content || 'From custom sheds and garages to home additions and exterior renovations, we bring your vision to life with exceptional quality and attention to detail.'}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  to="#contact"
+                <button
+                  onClick={scrollToContact}
                   className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center"
                 >
                   Get Your Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                </button>
                 <Link
                   to="/sheds"
                   className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3 rounded-lg font-semibold transition-colors text-center"
@@ -525,16 +526,18 @@ const HomePage: React.FC = () => {
                   Get a free consultation and quote for your {selectedProject.project_type.toLowerCase()} project
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link
-                    to="#contact"
-                    onClick={closeProjectModal}
+                  <button
+                    onClick={(e) => {
+                      closeProjectModal();
+                      scrollToContact(e);
+                    }}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center text-sm sm:text-base"
                   >
                     <svg className="h-4 w-4 sm:h-5 sm:w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     Get Free Quote
-                  </Link>
+                  </button>
                   <Link
                     to="/sheds"
                     onClick={closeProjectModal}
