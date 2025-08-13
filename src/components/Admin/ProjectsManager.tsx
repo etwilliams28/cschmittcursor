@@ -181,12 +181,12 @@ const ProjectsManager: React.FC = () => {
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
-          <div key={project.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="relative">
+          <div key={project.id} className="bg-white rounded-lg shadow-lg">
+            <div className="relative min-h-[150px]">
               <img
                 src={project.images?.[0] ? getImageUrl('images', project.images[0]) : 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400'}
                 alt={project.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-auto max-h-[200px] object-contain bg-gray-100"
               />
               {project.is_featured && (
                 <span className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 text-xs font-semibold rounded">

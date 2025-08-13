@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { BusinessSettings } from '../../types/database';
+import { formatDetailedHours } from '../../utils/formatHours';
 
 const Footer: React.FC = () => {
   const [businessSettings, setBusinessSettings] = useState<BusinessSettings | null>(null);
@@ -95,9 +96,9 @@ const Footer: React.FC = () => {
               <div className="flex items-start space-x-2">
                 <Clock className="h-4 w-4 text-orange-500 mt-0.5" />
                 <div className="text-gray-300 text-sm">
-                  <div>Mon-Fri: 7:00 AM - 6:00 PM</div>
-                  <div>Sat: 8:00 AM - 4:00 PM</div>
-                  <div>Sun: Closed</div>
+                  {formatDetailedHours(businessSettings?.hours).map((hour, index) => (
+                    <div key={index}>{hour}</div>
+                  ))}
                 </div>
               </div>
             </div>

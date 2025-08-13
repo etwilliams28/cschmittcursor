@@ -285,14 +285,14 @@ const HomePage: React.FC = () => {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="bg-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-105"
                 onClick={() => openProjectModal(project)}
               >
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative min-h-[200px]">
                   <img
                     src={project.images[0] ? getImageUrl('images', project.images[0]) : 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=400'}
                     alt={project.title}
-                    className="w-full h-full object-contain bg-gray-100 hover:scale-105 transition-transform duration-300"
+                    className="w-full h-auto max-h-[300px] object-contain bg-gray-100 hover:scale-105 transition-transform duration-300"
                   />
                   {project.is_featured && (
                     <span className="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 text-xs font-semibold rounded-full shadow-lg">
@@ -403,7 +403,7 @@ const HomePage: React.FC = () => {
                 <img
                   src={selectedProject.images[currentImageIndex] ? getImageUrl('images', selectedProject.images[currentImageIndex]) : 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800'}
                   alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                  className="w-full h-64 sm:h-96 object-cover rounded-lg shadow-lg"
+                  className="w-full h-auto max-h-[400px] sm:max-h-[500px] object-contain rounded-lg shadow-lg bg-gray-100"
                 />
                 
                 {/* Navigation Arrows */}

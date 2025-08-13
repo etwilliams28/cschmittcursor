@@ -129,7 +129,8 @@ const CustomSheds: React.FC = () => {
   const sizeCategories = {
     'Small': ['8x8', '8x10', '8x12'],
     'Medium': ['10x10', '10x12', '10x16'],
-    'Large': ['12x12', '12x16', '12x20', '14x20']
+    'Large': ['12x12', '12x16', '12x20', '14x20'],
+    'Other': ['Other']
   };
 
   return (

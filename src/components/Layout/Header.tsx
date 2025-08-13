@@ -4,6 +4,8 @@ import { Menu, X, Phone, Mail, Clock } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { BusinessSettings } from '../../types/database';
 import { scrollToContact } from '../../utils/scrollUtils';
+import { formatBusinessHours } from '../../utils/formatHours';
+import Logo from '../UI/Logo';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +54,7 @@ const Header: React.FC = () => {
             </div>
             <div className="flex items-center space-x-1">
               <Clock className="h-4 w-4" />
-              <span>Mon-Fri: 7AM-6PM | Sat: 8AM-4PM</span>
+              <span>{formatBusinessHours(businessSettings?.hours)}</span>
             </div>
           </div>
         </div>
@@ -62,9 +64,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-blue-900">
-              {businessSettings?.business_name || 'C. Schmitt Custom Build'}
-            </Link>
+            <Logo className="text-gray-700" />
           </div>
 
           {/* Desktop navigation */}

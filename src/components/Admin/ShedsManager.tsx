@@ -195,9 +195,9 @@ const ShedsManager: React.FC = () => {
     setOptionalUpgrades(prev => prev.filter((_, i) => i !== index));
   };
 
-  const materialTypes = ['Wood', 'Metal', 'Vinyl', 'Composite'];
+  const materialTypes = ['Wood', 'Duratemp', 'Metal', 'Vinyl'];
   const colors = ['Natural', 'White', 'Brown', 'Gray', 'Green', 'Blue', 'Red', 'Black', 'Charcoal', 'Navy Blue'];
-  const sizes = ['8x8', '8x10', '8x12', '10x10', '10x12', '10x16', '12x12', '12x16', '12x20'];
+  const sizes = ['8x8', '8x10', '8x12', '10x10', '10x12', '10x16', '12x12', '12x16', '12x20', 'Other'];
   const shedStyles = ['A-Frame', 'Dutch Barn', 'Dormer', 'Porch', 'Modern Farmhouse', 'Gable', 'Gambrel'];
 
   if (loading) {

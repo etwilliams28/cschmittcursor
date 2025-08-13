@@ -233,6 +233,7 @@ const QuoteRequestForm: React.FC<QuoteRequestFormProps> = ({
           >
             <option value="">Any material</option>
             <option value="Wood">Wood</option>
+            <option value="Duratemp">Duratemp</option>
             <option value="Metal">Metal</option>
             <option value="Vinyl">Vinyl</option>
           </select>
