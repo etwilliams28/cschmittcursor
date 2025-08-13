@@ -35,9 +35,10 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white shadow-lg">
       {/* Top bar with contact info */}
-      <div className="bg-blue-900 text-white py-2">
+      <div className="bg-blue-900 text-white py-2 sm:py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
+          {/* Desktop layout - horizontal */}
+          <div className="hidden md:flex justify-between items-center text-sm">
             <div className="flex items-center space-x-4">
               {businessSettings?.phone && (
                 <div className="flex items-center space-x-1">
@@ -55,6 +56,28 @@ const Header: React.FC = () => {
             <div className="flex items-center space-x-1">
               <Clock className="h-4 w-4" />
               <span>{formatBusinessHours(businessSettings?.hours)}</span>
+            </div>
+          </div>
+          
+          {/* Mobile layout - vertical stack */}
+          <div className="md:hidden space-y-1">
+            <div className="flex items-center justify-center space-x-2 text-xs sm:text-sm">
+              {businessSettings?.phone && (
+                <div className="flex items-center space-x-1">
+                  <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="truncate">{businessSettings.phone}</span>
+                </div>
+              )}
+              {businessSettings?.email && (
+                <div className="flex items-center space-x-1">
+                  <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="truncate">{businessSettings.email}</span>
+                </div>
+              )}
+            </div>
+            <div className="flex items-center justify-center space-x-1 text-xs sm:text-sm">
+              <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="text-center">{formatBusinessHours(businessSettings?.hours)}</span>
             </div>
           </div>
         </div>
