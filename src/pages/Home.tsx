@@ -21,6 +21,26 @@ const HomePage: React.FC = () => {
     fetchHomeData();
   }, []);
 
+  // Check if we need to scroll to contact section after navigation
+  useEffect(() => {
+    const shouldScrollToContact = sessionStorage.getItem('scrollToContact');
+    if (shouldScrollToContact) {
+      // Clear the flag
+      sessionStorage.removeItem('scrollToContact');
+      
+      // Wait for the page to fully load, then scroll to contact
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 100);
+    }
+  }, []);
+
   const fetchHomeData = async () => {
     // Fetch hero content
     const { data: heroData } = await supabase
