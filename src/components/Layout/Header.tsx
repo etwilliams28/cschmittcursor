@@ -70,15 +70,27 @@ const Header: React.FC = () => {
           {/* Desktop navigation */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors ${
-                  location.pathname === item.href ? 'text-blue-600 border-b-2 border-blue-600' : ''
-                }`}
-              >
-                {item.name}
-              </Link>
+              <div key={item.name}>
+                {item.name === 'Contact' ? (
+                  <button
+                    onClick={scrollToContact}
+                    className={`text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
+                      location.pathname === '/' ? 'text-blue-600 border-b-2 border-blue-600' : ''
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className={`text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors ${
+                      location.pathname === item.href ? 'text-blue-600 border-b-2 border-blue-600' : ''
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
             ))}
           </nav>
 
@@ -108,14 +120,27 @@ const Header: React.FC = () => {
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="flex flex-col space-y-2">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  {item.name === 'Contact' ? (
+                    <button
+                      onClick={(e) => {
+                        setIsMenuOpen(false);
+                        scrollToContact(e);
+                      }}
+                      className="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium cursor-pointer text-left w-full"
+                    >
+                      {item.name}
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className="text-gray-700 hover:text-blue-600 px-3 py-2 text-base font-medium"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
               ))}
               <button
                 onClick={(e) => {
