@@ -23,6 +23,11 @@ const Header: React.FC = () => {
     };
 
     fetchBusinessSettings();
+    
+    // Mobile debugging
+    console.log('User Agent:', navigator.userAgent);
+    console.log('Viewport Width:', window.innerWidth);
+    console.log('Is Mobile:', /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
   }, []);
 
   const navigation = [
