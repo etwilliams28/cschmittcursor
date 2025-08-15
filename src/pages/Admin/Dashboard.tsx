@@ -7,9 +7,11 @@ import {
   Building2,
   Calendar,
   TrendingUp,
-  Mail
+  Mail,
+  Download
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { downloadSitemap } from '../../utils/sitemapGenerator';
 
 interface DashboardStats {
   totalQuotes: number;
@@ -160,6 +162,13 @@ const AdminDashboard: React.FC = () => {
           <button className="flex items-center p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
             <Users className="h-5 w-5 text-orange-600 mr-3" />
             <span className="text-sm font-medium text-gray-700">Manage Reviews</span>
+          </button>
+          <button 
+            onClick={() => downloadSitemap(window.location.origin)}
+            className="flex items-center p-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Download className="h-5 w-5 text-indigo-600 mr-3" />
+            <span className="text-sm font-medium text-gray-700">Generate Sitemap</span>
           </button>
         </div>
       </div>
