@@ -5,6 +5,8 @@ export interface BusinessSettings {
   email: string;
   address: string;
   hours: Record<string, string>;
+  facebook_url?: string;
+  instagram_url?: string;
   created_at: string;
   updated_at: string;
 }
