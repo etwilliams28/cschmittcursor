@@ -31,3 +31,4 @@ dist-ssr
 supabase/.temp/
 migrate.js
 *.migration.js
+test-keys.js
