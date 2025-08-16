@@ -33,7 +33,12 @@ const AdminLogin: React.FC = () => {
       const { error } = await signIn(data.email, data.password);
       
       if (error) {
-        setLoginError(error.message);
+        // Handle JWT-related errors specifically
+        if (error.message.includes('JWT') || error.message.includes('token')) {
+          setLoginError('Authentication system updated. Please try logging in again.');
+        } else {
+          setLoginError(error.message);
+        }
       }
     } catch (error) {
       setLoginError('An unexpected error occurred. Please try again.');

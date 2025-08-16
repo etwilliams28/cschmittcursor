@@ -7,6 +7,16 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Clear any existing sessions when JWT secret changes
+    const clearExistingSession = async () => {
+      try {
+        // Force sign out to clear any invalid sessions
+        await supabase.auth.signOut();
+      } catch (error) {
+        console.log('Clearing existing session...');
+      }
+    };
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
@@ -20,6 +30,9 @@ export const useAuth = () => {
         setLoading(false);
       }
     );
+
+    // Clear existing sessions on mount (helps with JWT secret changes)
+    clearExistingSession();
 
     return () => subscription.unsubscribe();
   }, []);
