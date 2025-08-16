@@ -13,6 +13,8 @@ const businessSettingsSchema = z.object({
   email: z.string().email('Please enter a valid email').optional().or(z.literal('')),
   address: z.string().optional(),
   hours: z.record(z.string()).optional(),
+  facebook_url: z.string().url('Please enter a valid URL').optional().or(z.literal('')),
+  instagram_url: z.string().url('Please enter a valid URL').optional().or(z.literal('')),
 });
 
 type BusinessSettingsFormData = z.infer<typeof businessSettingsSchema>;
@@ -55,6 +57,8 @@ const BusinessSettingsManager: React.FC = () => {
       setValue('phone', data.phone || '');
       setValue('email', data.email || '');
       setValue('address', data.address || '');
+      setValue('facebook_url', data.facebook_url || '');
+      setValue('instagram_url', data.instagram_url || '');
       
       if (data.hours && typeof data.hours === 'object') {
         setHours({ ...hours, ...data.hours });
@@ -191,6 +195,42 @@ const BusinessSettingsManager: React.FC = () => {
                   placeholder="123 Main St, City, Province"
                 />
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <span className="flex items-center">
+                    <span className="text-blue-600 mr-2">📘</span>
+                    Facebook URL
+                  </span>
+                </label>
+                <input
+                  type="url"
+                  {...register('facebook_url')}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="https://www.facebook.com/yourpage"
+                />
+                {errors.facebook_url && (
+                  <p className="mt-1 text-sm text-red-600">{errors.facebook_url.message}</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <span className="flex items-center">
+                    <span className="text-pink-600 mr-2">📷</span>
+                    Instagram URL
+                  </span>
+                </label>
+                <input
+                  type="url"
+                  {...register('instagram_url')}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="https://www.instagram.com/yourhandle"
+                />
+                {errors.instagram_url && (
+                  <p className="mt-1 text-sm text-red-600">{errors.instagram_url.message}</p>
+                )}
+              </div>
             </div>
           </div>
 
@@ -250,6 +290,7 @@ const BusinessSettingsManager: React.FC = () => {
             <li>• Contact information is displayed in the header and contact section</li>
             <li>• Business hours are shown in the header and footer</li>
             <li>• Address appears in the footer and contact forms</li>
+            <li>• Social media links appear in the footer with hover effects</li>
           </ul>
         </div>
       </div>
