@@ -12,6 +12,13 @@
   status = 301
   force = true
 
+# Redirect www to non-www
+[[redirects]]
+  from = "https://www.cscustoms.ca/*"
+  to = "https://cscustoms.ca/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
